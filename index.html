@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TATDDLE — Elevate Labs Internship</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <!-- Dynamic SVG Logo -->
+        <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="url(#grad)" />
+          <path d="M25 60 L50 25 L75 60 Z" fill="#fff"/>
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff9800"/>
+              <stop offset="100%" stop-color="#2196f3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <span class="brand">TATDDLE</span>
+          <small>Intern Project — Elevate Labs Pvt Ltd</small>
+        </div>
+      </div>
+      <button id="menu-btn" class="menu-btn" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav id="primary-nav" class="site-nav" aria-hidden="true">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner container">
+      <h1 id="typed-text"></h1>
+      <p>Showcasing responsive design & modern UI as part of my internship with Elevate Labs Pvt Ltd.</p>
+      <a class="btn" href="#">Explore</a>
+    </div>
+  </section>
+
+  <main class="container content">
+    <article class="card fade-in">Dynamic Content Box 1</article>
+    <article class="card fade-in">Dynamic Content Box 2</article>
+    <article class="card fade-in">Dynamic Content Box 3</article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> TATDDLE — Elevate Labs Pvt Ltd</p>
+      <p id="current-time"></p>
+    </div>
+  </footer>
+
+  <script>
+    // Typing effect
+    const text = "Make your site mobile-friendly & dynamic";
+    let index = 0;
+    const typedText = document.getElementById("typed-text");
+    function type() {
+      if (index < text.length) {
+        typedText.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 80);
+      }
+    }
+    type();
+
+    // Year & live time
+    document.getElementById("year").textContent = new Date().getFullYear();
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("current-time").textContent = now.toLocaleString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Scroll animations
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    faders.forEach(fader => observer.observe(fader));
+
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.querySelector('.site-header').classList.toggle('nav-open');
+    });
+  </script>
+</body>
+</html>

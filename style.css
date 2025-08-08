@@ -1,0 +1,260 @@
+/* =====================================================================
+   style.css — TATDDLE (Intern Project — Elevate Labs Pvt Ltd)
+   - Responsive layout
+   - Animated hamburger
+   - Typing area + scroll reveal
+   - Accessibility + reduced-motion support
+   ===================================================================== */
+
+/* ---------- CSS variables (theme) ---------- */
+:root{
+  --max-width: 1100px;
+  --bg: #ffffff;
+  --text: #222;
+  --muted: #777;
+  --accent1: #ff9800;
+  --accent2: #2196f3;
+  --card-bg: #f7f7f7;
+  --footer-bg: #222;
+  --white: #fff;
+  --container-padding: 16px;
+  --header-height: 64px;
+}
+
+/* ---------- Reset & base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden; /* prevents horizontal scroll issues */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+}
+
+/* ---------- Helper utilities ---------- */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--container-padding); }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ---------- Header / Nav (desktop) ---------- */
+.site-header {
+  background: var(--bg);
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+.header-inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Logo block */
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo svg, .logo img { width: 44px; height: 44px; display: block; }
+.brand { font-weight: 700; font-size: 1.05rem; color: var(--text); display: block; }
+.brand + small { display: block; color: var(--muted); font-size: 0.72rem; line-height: 1; margin-top: 2px; }
+
+/* Desktop nav */
+.site-nav { display: flex; align-items: center; }
+.site-nav ul { display: flex; gap: 18px; list-style: none; align-items: center; margin: 0; padding: 0; }
+.site-nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 6px;
+  border-radius: 6px;
+  transition: background 160ms ease, color 160ms ease;
+}
+.site-nav a:focus,
+.site-nav a:hover { background: rgba(0,0,0,0.03); outline: none; }
+
+/* ---------- Hamburger button (mobile) ---------- */
+.menu-btn {
+  display: none;              /* shown in mobile media query */
+  width: 44px;
+  height: 44px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.menu-btn:focus { outline: 3px solid rgba(255,152,0,0.25); outline-offset: 2px; }
+
+/* three bar lines */
+.menu-btn .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12)),
+              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=60')
+              center/cover no-repeat;
+  color: var(--white);
+  text-align: center;
+  padding: 80px var(--container-padding);
+}
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  background: rgba(0,0,0,0.24);
+  border-radius: 10px;
+}
+.hero h1 { font-size: 2rem; margin-bottom: 8px; line-height: 1.05; }
+.hero p { font-size: 1rem; opacity: 0.95; margin-bottom: 12px; }
+
+/* typing text placeholder: reserve vertical space so layout doesn't jump */
+#typed-text { font-weight: 700; font-size: 2rem; min-height: 2.6rem; white-space: nowrap; overflow: hidden; }
+
+/* CTA button */
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(33,150,243,0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.btn:focus, .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(33,150,243,0.14); }
+
+/* ---------- Content grid ---------- */
+.content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 32px 0; }
+.card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 6px 18px rgba(10,10,10,0.02);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 14px 34px rgba(10,10,10,0.06); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--white);
+  text-align: center;
+  padding: 24px var(--container-padding);
+}
+.site-footer p, .site-footer small { margin: 6px 0; color: rgba(255,255,255,0.9); }
+#current-time { margin-top: 6px; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+
+/* ---------- Mobile / Tablet responsive ---------- */
+@media (max-width: 768px) {
+
+  /* show hamburger, hide desktop nav layout */
+  .menu-btn { display: flex; }
+
+  /* collapse nav using max-height for smooth open/close */
+  .site-nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 320ms ease;
+    background: var(--bg);
+    border-top: 1px solid #eee;
+  }
+
+  /* open state toggles nav height */
+  .site-header.nav-open .site-nav { max-height: 420px; } /* plenty to show items */
+
+  /* stack nav links vertically */
+  .site-nav ul { flex-direction: column; gap: 8px; padding: 12px; list-style: none; }
+  .site-nav a { display: block; padding: 12px; border-radius: 8px; }
+
+  /* header wraps to allow stacking */
+  .header-inner { flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 0; }
+
+  /* hamburger -> X animation when nav open */
+  .site-header.nav-open .menu-btn .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .site-header.nav-open .menu-btn .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .site-header.nav-open .menu-btn .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* hero smaller on phones */
+  .hero { padding: 48px 12px; }
+  .hero h1 { font-size: 1.5rem; }
+  #typed-text { font-size: 1.5rem; min-height: 2rem; }
+  .hero p { font-size: 0.95rem; }
+
+  /* single column content */
+  .content { grid-template-columns: 1fr; padding: 20px 0; gap: 14px; }
+
+  /* smaller logo */
+  .logo svg, .logo img { width: 36px; height: 36px; }
+
+  /* slightly larger tap targets for buttons */
+  body { font-size: 16px; }
+}
+
+/* very small devices (narrow phones) */
+@media (max-width: 480px) {
+  .hero { padding: 36px 8px; }
+  .btn { width: 100%; text-align: center; padding: 14px 18px; border-radius: 10px; }
+  .brand { font-size: 1rem; }
+  .brand + small { font-size: 0.68rem; }
+}
+
+/* ---------- Scroll reveal animations ---------- */
+/* .fade-in used on cards; .visible toggled by JS IntersectionObserver */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(.2,.9,.2,1), transform 0.8s cubic-bezier(.2,.9,.2,1);
+  will-change: opacity, transform;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Accessibility: focus states ---------- */
+a:focus, button:focus, input:focus {
+  outline: 3px solid rgba(33,150,243,0.18);
+  outline-offset: 3px;
+}
+
+/* ---------- Reduced motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Small helpers ---------- */
+.hidden { display: none !important; }
+.center { text-align: center; }
+.kicker { font-size: 0.85rem; color: var(--muted); }
+
+/* =====================================================================
+   End of style.css
+   ===================================================================== */
