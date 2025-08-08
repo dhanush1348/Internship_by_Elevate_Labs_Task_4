@@ -55,5 +55,6 @@ task4-responsive/
 1. **Clone this repo**  
    ```bash
    git clone https://github.com/yourusername/task4-responsive.git
-   cd task4-responsive
+   cd Internship_by_Elevate_Labs_Task_4
+
 
